@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueResource from 'vue-resource'
+
+// 安装vue-resource  在此之后才可以使用Vue.$http对象
+Vue.use(VueResource)
 
 Vue.config.productionTip = false
 
