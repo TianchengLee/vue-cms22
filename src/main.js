@@ -7,6 +7,8 @@ Vue.config.productionTip = false
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 
+import './lib/mui/css/mui.css'
+
 Vue.use(MintUI)
 
 /* eslint-disable no-new */
