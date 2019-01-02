@@ -18,6 +18,12 @@ import './lib/mui/css/icons-extra.css'
 
 Vue.use(MintUI)
 
+// 配置根域名
+Vue.http.options.root = 'http://www.lovegf.cn:8899/'
+
+// 配置默认的post提交数据类型为传统表单
+Vue.http.options.emulateJSON = true
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

@@ -60,7 +60,7 @@ export default {
   },
   methods: {
     getBanner() {
-      this.$http.get("http://www.lovegf.cn:8899/api/getlunbo").then(result => {
+      this.$http.get("api/getlunbo").then(result => {
         // console.log(result.body);
         if (result.body.status == 0) {
           this.banners = result.body.message;
