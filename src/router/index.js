@@ -5,6 +5,7 @@ import homeContainer from '../pages/home'
 import memberContainer from '../pages/member'
 import searchContainer from '../pages/search'
 import shopcarContainer from '../pages/shopcar'
+import newsListContainer from '../pages/newsList'
 
 Vue.use(Router)
 
@@ -15,6 +16,7 @@ export default new Router({
     { path: '/member', component: memberContainer },
     { path: '/search', component: searchContainer },
     { path: '/shopcar', component: shopcarContainer },
+    { path: '/home/newsList', component: newsListContainer },
   ],
   linkActiveClass: 'mui-active'
 })

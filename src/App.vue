@@ -22,8 +22,9 @@
       </router-link>
     </nav>
 
-    <router-view></router-view>
-
+    <transition>
+      <router-view></router-view>
+    </transition>
   </div>
 </template>
 
@@ -35,5 +36,22 @@ export default {};
 .app-container {
   padding-top: 40px;
   padding-bottom: 50px;
+  overflow-x: hidden;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateX(-100%);
+  position: absolute;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.5s ease;
 }
 </style>
