@@ -36,6 +36,9 @@ import comment from './components/common/comment'
 // 定义全局组件, 参数1: 组件名 决定了将来如何使用 参数2: 组件对象
 Vue.component('comment', comment)
 
+import VuePreview from 'vue2-preview'
+Vue.use(VuePreview)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

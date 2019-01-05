@@ -13,7 +13,9 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: 'localhost', // 如果这里是localhost意味着只有自己的电脑能访问
+    // 如果是0.0.0.0 则允许所有电脑访问你自己的服务器
+    // host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
