@@ -7,6 +7,7 @@ import searchContainer from '../pages/search'
 import shopcarContainer from '../pages/shopcar'
 import newsListContainer from '../pages/newsList'
 import newsInfoContainer from '../pages/newsInfo'
+import photoListContainer from '../pages/photoList'
 
 Vue.use(Router)
 
@@ -19,6 +20,7 @@ export default new Router({
     { path: '/shopcar', component: shopcarContainer },
     { path: '/home/newsList', component: newsListContainer },
     { path: '/home/newsInfo/:id', component: newsInfoContainer },
+    { path: '/home/photoList', component: photoListContainer },
   ],
   linkActiveClass: 'mui-active'
 })

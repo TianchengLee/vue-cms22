@@ -8,5 +8,13 @@
     }],
     "stage-2"
   ],
-  "plugins": ["transform-vue-jsx", "transform-runtime"]
+  "ignore": [
+    "./src/lib/mui/js/mui.js"
+  ],
+  "plugins": ["transform-vue-jsx", "transform-runtime", ["component", [
+    {
+      "libraryName": "mint-ui",
+      "style": true
+    }
+  ]]]
 }
