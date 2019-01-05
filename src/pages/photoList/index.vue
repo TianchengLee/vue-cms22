@@ -1,16 +1,21 @@
 <template>
   <div>
-    
     <!-- 顶部滑动条区域 -->
     <div id="slider" class="mui-slider">
-      <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+      <div
+        id="sliderSegmentedControl"
+        class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted"
+      >
         <div class="mui-scroll">
-          <a :class="['mui-control-item', item.id == 0 ? 'mui-active' : '']" v-for="item in cates" :key="item.id" @tap="getPhotoListByCateId(item.id)">
-            {{ item.title }}
-          </a>
+          <!-- <a :class="['mui-control-item', { 'mui-active': item.id == 0 }]" v-for="item in cates" :key="item.id" @tap="getPhotoListByCateId(item.id)"> -->
+          <a
+            :class="{'mui-control-item' : true, 'mui-active': index == 0}"
+            v-for="(item, index) in cates"
+            :key="item.id"
+            @tap="getPhotoListByCateId(item.id)"
+          >{{ item.title }}</a>
         </div>
       </div>
-
     </div>
 
     <!-- 图片列表区域 -->
@@ -23,7 +28,6 @@
         </div>
       </router-link>
     </ul>
-
   </div>
 </template>
 
@@ -39,6 +43,7 @@ export default {
     };
   },
   created() {
+    // 先加载分类数据
     this.getAllCategory();
     // 默认进入页面，就主动请求 所有图片列表的数据
     this.getPhotoListByCateId(0);
@@ -52,6 +57,7 @@ export default {
     });
   },
   methods: {
+    // 获取所有分类信息
     getAllCategory() {
       // 获取所有的图片分类
       this.$http.get("api/getimgcategory").then(result => {
@@ -59,6 +65,8 @@ export default {
           // 手动拼接出一个最完整的 分类列表
           result.body.message.unshift({ title: "全部", id: 0 });
           this.cates = result.body.message;
+          // 分类数据加载完毕后, 再加载第一个分类的数据
+          // this.getPhotoListByCateId(result.body.message[0].id);
         }
       });
     },
@@ -75,9 +83,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-* {
-  touch-action: pan-y;
-}
+// * {
+//   touch-action: pan-y;
+// }
 
 .photo-list {
   list-style: none;
