@@ -11,6 +11,8 @@ import photoListContainer from '../pages/photoList'
 import photoInfoContainer from '../pages/photoInfo'
 import goodsListContainer from '../pages/goodsList'
 import goodsInfoContainer from '../pages/goodsInfo'
+import goodsDescContainer from '../pages/goodsDesc'
+import goodsCommentContainer from '../pages/goodsComment'
 
 Vue.use(Router)
 
@@ -27,6 +29,8 @@ export default new Router({
     { path: '/home/photoInfo/:id', component: photoInfoContainer },
     { path: '/home/goodsList', component: goodsListContainer },
     { path: '/home/goodsInfo/:id', component: goodsInfoContainer, name: 'goodsInfo' },
+    { path: '/home/goodsDesc/:id', component: goodsDescContainer, name: 'goodsDesc' },
+    { path: '/home/goodsComment/:id', component: goodsCommentContainer, name: 'goodsComment' },
   ],
   linkActiveClass: 'mui-active'
 })

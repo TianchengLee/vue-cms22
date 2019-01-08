@@ -29,6 +29,25 @@
             <span class="now_price">￥{{ goodsinfo.sell_price }}</span>
           </p>
           <!-- <p>购买数量：<numbox @getcount="getSelectedCount" :max="goodsinfo.stock_quantity"></numbox></p> -->
+          <div class="buy-count">购买数量：
+            <div class="num-box">
+              <!-- || 一般用于默认值的处理 -->
+              <!-- && 如果前面的结果为false , 后面的代码就不会执行 -->
+              <input
+                :disabled="buyCount <= 1"
+                @click="buyCount > 1 && buyCount--"
+                type="button"
+                value="-"
+              >
+              <input type="text" v-model="buyCount">
+              <input
+                :disabled="buyCount >= goodsinfo.stock_quantity"
+                @click="buyCount < goodsinfo.stock_quantity && buyCount++"
+                type="button"
+                value="+"
+              >
+            </div>
+          </div>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
             <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
@@ -73,7 +92,7 @@ export default {
       lunbotu: [], // 轮播图的数据
       goodsinfo: {}, // 获取到的商品的信息
       ballFlag: false, // 控制小球的隐藏和显示的标识符
-      selectedCount: 1 // 保存用户选中的商品数量， 默认，认为用户买1个
+      buyCount: 1 // 保存用户选中的商品数量， 默认，认为用户买1个
     };
   },
   created() {
@@ -102,11 +121,11 @@ export default {
     },
     goDesc(id) {
       // 点击使用编程式导航跳转到 图文介绍页面
-      this.$router.push({ name: "goodsdesc", params: { id } });
+      this.$router.push({ name: "goodsDesc", params: { id } });
     },
     goComment(id) {
       // 点击跳转到 评论页面
-      this.$router.push({ name: "goodscomment", params: { id } });
+      this.$router.push({ name: "goodsComment", params: { id } });
     },
     addToShopCar() {
       // 添加到购物车
@@ -115,18 +134,18 @@ export default {
       // 拼接出一个，要保存到 store 中 car 数组里的 商品信息对象
       var goodsinfo = {
         id: this.id,
-        count: this.selectedCount,
+        count: this.buyCount,
         price: this.goodsinfo.sell_price,
         selected: true
       };
       // 调用 store 中的 mutations 来将商品加入购物车
-      this.$store.commit("addToCar", goodsinfo);
+      // this.$store.commit("addToCar", goodsinfo);
     },
     beforeEnter(el) {
       el.style.transform = "translate(0, 0)";
     },
     enter(el, done) {
-      el.offsetWidth;
+      el.offsetHeight;
 
       // 小球动画优化思路：
       // 1. 先分析导致 动画 不准确的 本质原因： 我们把 小球 最终 位移到的 位置，已经局限在了某一分辨率下的 滚动条未滚动的情况下；
@@ -151,16 +170,7 @@ export default {
     },
     afterEnter(el) {
       this.ballFlag = !this.ballFlag;
-    },
-    getSelectedCount(count) {
-      // 当子组件把 选中的数量传递给父组件的时候，把选中的值保存到 data 上
-      this.selectedCount = count;
-      console.log("父组件拿到的数量值为： " + this.selectedCount);
     }
-  },
-  components: {
-    // swiper,
-    // numbox
   }
 };
 </script>
@@ -182,6 +192,24 @@ export default {
     font-weight: bold;
   }
 
+  .buy-count {
+    .num-box {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      width: 220px;
+      height: 35px;
+    }
+    input[type="text"] {
+      width: 65px;
+      text-align: center;
+    }
+    input[type="button"] {
+      width: 40px;
+      height: 100%;
+    }
+  }
+
   .mui-card-footer {
     display: block;
     button {
@@ -195,7 +223,7 @@ export default {
     border-radius: 50%;
     background-color: red;
     position: absolute;
-    z-index: 99;
+    z-index: 999;
     top: 390px;
     left: 146px;
   }
