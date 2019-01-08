@@ -17,7 +17,7 @@
     <!-- 在网页中，有两种跳转方式： -->
     <!-- 方式1： 使用 a 标签 的形式叫做 标签跳转  -->
     <!-- 方式2： 使用 window.location.href 的形式，叫做 编程式导航 -->
-    <div class="goods-item" v-for="item in goodslist" :key="item.id" @click="goDetail(item.id)">
+    <div class="goods-item" v-for="item in goodslist" :key="item.id" @tap="goDetail(item.id)">
       <img :src="item.img_url" alt>
       <h1 class="title">{{ item.title }}</h1>
       <div class="info">
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <mt-button v-if="hasMore" type="danger" size="large" @click="getMore">加载更多</mt-button>
+    <mt-button v-if="hasMore" type="danger" size="large" @tap="getMore">加载更多</mt-button>
   </div>
 </template>
 
