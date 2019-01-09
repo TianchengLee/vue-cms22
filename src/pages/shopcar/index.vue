@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <p>{{ $store.getters.goodsSelected }}</p>
+    <!-- <p>{{ $store.getters.goodsSelected }}</p> -->
   </div>
 </template>
 
