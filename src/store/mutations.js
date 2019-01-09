@@ -1,4 +1,5 @@
 export default {
+  // mutation不能获取返回值
   addToCar(state, goodsInfo) {
     // 添加商品到购物车
     // 1. 如果购物车中没有该商品, 直接push
@@ -11,7 +12,7 @@ export default {
     // for (let i = 0; i < state.car.length; i++) {
     //   let carInfo = state.car[i]
     //   // 如果两者相等 表示数组中已经存在该商品
-    //   if (carInfo.id === goodsInfo.id) {
+    //   if (carInfo.id == goodsInfo.id) {
     //     carInfo.count += goodsInfo.count
     //     // 只要进入了if 表示找到了
     //     isFound = true
@@ -20,7 +21,7 @@ export default {
     // }
     // some方法: 迭代数组的方法, 特点是如果回调函数返回true表示找到了, 就会停止循环
     state.car.some(item => {
-      if (item.id === goodsInfo.id) {
+      if (item.id == goodsInfo.id) {
         // 表示找到了
         item.count += goodsInfo.count
         return isFound = true
@@ -40,6 +41,27 @@ export default {
 
     // JS基础很重要 JS基础: 冒泡排序 假设已经排好序了  DOM: 全选反选 假设已经全选了
     // 假设法  在开发中非常常用
+
+    // localStorage只能存字符串
+    localStorage.setItem('car', JSON.stringify(state.car))
+  },
+  updateCarInfo(state, goodsInfo) {
+    state.car.some(item => {
+      if (item.id == goodsInfo.id) {
+        item.count = parseInt(goodsInfo.count)
+        return true
+      }
+    })
+    localStorage.setItem('car', JSON.stringify(state.car))
+  },
+  removeFormCar(state, id) {
+    state.car.some((item, i) => {
+      if (item.id == id) {
+        state.car.splice(i, 1)
+        return true
+      }
+    })
+    localStorage.setItem('car', JSON.stringify(state.car))
   }
   // mutations中的所有方法, 第一个参数都是state
   // changeMsg(state, newMsg) {

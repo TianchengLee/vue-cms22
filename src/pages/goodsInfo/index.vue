@@ -199,14 +199,14 @@ export default {
       overflow: hidden;
       width: 220px;
       height: 35px;
-    }
-    input[type="text"] {
-      width: 65px;
-      text-align: center;
-    }
-    input[type="button"] {
-      width: 40px;
-      height: 100%;
+      input[type="text"] {
+        width: 65px;
+        text-align: center;
+      }
+      input[type="button"] {
+        width: 40px;
+        height: 100%;
+      }
     }
   }
 
