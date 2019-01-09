@@ -42,7 +42,7 @@
         </a>
       </li>
       <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-        <a href="#">
+        <a @click="changeVX" href="#">
           <img src="../../assets/menu6.png" alt>
           <div class="mui-media-body">联系我们</div>
         </a>
@@ -66,6 +66,14 @@ export default {
           this.banners = result.body.message;
         }
       });
+    },
+    changeVX() {
+      // console.log('被点了')
+      // 在Vuex中强烈建议 不要这么改数据
+      // 以后修改数据千万不要这么干
+      // this.$store.state.msg = 123
+      // console.log(this.$store.state.msg)
+      this.$store.commit('changeMsg', '妈咪')
     }
   },
   created() {

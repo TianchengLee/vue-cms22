@@ -39,9 +39,12 @@ Vue.component('comment', comment)
 import VuePreview from 'vue2-preview'
 Vue.use(VuePreview)
 
+import store from './store/'
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  render: h => h(App),
   router,
-  render: h => h(App)
+  store // 将store挂载到vue实例身上
 })
