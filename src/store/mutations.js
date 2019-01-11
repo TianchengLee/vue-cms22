@@ -62,6 +62,15 @@ export default {
       }
     })
     localStorage.setItem('car', JSON.stringify(state.car))
+  },
+  updateGoodsSelected(state, goodsInfo) {
+    state.car.some(item => {
+      if (item.id == goodsInfo.id) {
+        item.selected = goodsInfo.selected
+        return true
+      }
+    })
+    localStorage.setItem('car', JSON.stringify(state.car))
   }
   // mutations中的所有方法, 第一个参数都是state
   // changeMsg(state, newMsg) {

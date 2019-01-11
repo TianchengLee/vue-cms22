@@ -8,7 +8,7 @@
             <!-- v-model="$store.getters.getGoodsSelected[item.id]" -->
             <mt-switch
               v-model="$store.getters.goodsSelected[item.id]"
-              @change="selectedChanged(item.id, $store.getters.getGoodsSelected[item.id])"
+              @change="selectedChanged(item.id, $store.getters.goodsSelected[item.id])"
             ></mt-switch>
             <img :src="item.thumb_path">
             <div class="info">
@@ -46,8 +46,8 @@
           <div class="left">
             <p>总计（不含运费）</p>
             <p>已勾选商品
-              <!-- <span class="red">{{ $store.getters.getGoodsCountAndAmount.count }}</span> 件， 总价
-              <span class="red">￥{{ $store.getters.getGoodsCountAndAmount.amount }}</span>-->
+              <span class="red">{{ $store.getters.goodsCountAndAmount.count }}</span> 件， 总价
+              <span class="red">￥{{ $store.getters.goodsCountAndAmount.amount }}</span>
             </p>
           </div>
           <mt-button type="danger">去结算</mt-button>
@@ -118,10 +118,10 @@ export default {
       this.goodslist.splice(index, 1);
       this.$store.commit("removeFormCar", id);
     },
-    selectedChanged(id, val) {
+    selectedChanged(id, selected) {
       // 每当点击开关，把最新的 快关状态，同步到 store 中
-      // console.log(id + " --- " + val);
-      this.$store.commit("updateGoodsSelected", { id, selected: val });
+      console.log(id, selected);
+      this.$store.commit("updateGoodsSelected", { id, selected });
     }
   }
 };

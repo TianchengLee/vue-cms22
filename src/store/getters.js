@@ -38,4 +38,21 @@ export default {
     state.car.forEach(item => obj[item.id] = item.selected)
     return obj // { 88: true, 90: true }
   },
+  goodsCountAndAmount(state) {
+    let o = {
+      count: 0, // 已勾选的商品数量
+      amount: 0 // 已勾选的商品总价
+    } // 计数对象
+
+    // state.car.forEach(item => {
+    //   if (item.selected) {
+    //     o.count += item.count
+    //     o.amount += item.price * item.count
+    //   }
+    // })
+
+    state.car.forEach(item => item.selected && (o.count += item.count) && (o.amount += item.price * item.count))
+
+    return o
+  }
 }
