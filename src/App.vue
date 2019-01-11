@@ -1,6 +1,13 @@
 <template>
   <div id="app" class="app-container">
-    <mt-header fixed title="Vue-CMS"></mt-header>
+    <mt-header fixed title="Vue-CMS">
+      <span 
+      v-show="$route.path !== '/home'" 
+      @click="$router.go(-1)" 
+      slot="left">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
     <nav class="mui-bar mui-bar-tab">
       <router-link class="mui-tab-item1" to="/home">
         <span class="mui-icon mui-icon-home"></span>
@@ -27,10 +34,6 @@
     </transition>
   </div>
 </template>
-
-<script>
-export default {};
-</script>
 
 <style lang="less">
 .app-container {
@@ -75,17 +78,17 @@ export default {};
 }
 
 .mui-bar-tab .mui-tab-item1 .mui-icon {
-    top: 3px;
-    width: 24px;
-    height: 24px;
-    padding-top: 0;
-    padding-bottom: 0;
+  top: 3px;
+  width: 24px;
+  height: 24px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .mui-bar-tab .mui-tab-item1 .mui-icon ~ .mui-tab-label {
-    font-size: 11px;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 11px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
